@@ -8,9 +8,9 @@ import "./Posts.css";
 
 // pass props in this file to
 const Post = props => {
-  const [likes, setlikes] = useState(props.post.likes);
+  const [likes, setLikes] = useState(props.post.likes);
 
-  const addLike = () => { setlikes(likes +1)}
+  const addLike = () => { setLikes(likes + 1)};
   // set up state for the likes
 
   return (
@@ -28,7 +28,7 @@ const Post = props => {
           src={props.post.imageUrl}
         />
       </div>
-      <LikeSection />
+      <LikeSection likes={likes} addLike={addLike} />
       <CommentSection
         postId={props.post.imageUrl}
         comments={props.post.comments}

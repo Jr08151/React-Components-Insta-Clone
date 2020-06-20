@@ -11,28 +11,29 @@ import PostsPage from "./components/PostsContainer/PostsPage.js";
 import SearchBar from "./components/SearchBar/SearchBarContainer.js";
 import dummyData from "./dummy-data.js";
 
-
 const App = () => {
   const [postData, setPostData] = useState(dummyData);
 
   const searchFilter = (searchString) => {
-    setPostData(dummyData);
-    setPostData(dummyData.filter((P)=>{
-      retrun (p.username.toLowerCase().includes(searchString.toLowerCase()) || commensInclude(p.comments,searchString));
-    }));
-  }
+      setPostData(dummyData);
+      setPostData(dummyData.filter((p)=>{
+          return (p.username.toLowerCase().includes(searchString.toLowerCase()) || commentsInclude(p.comments,searchString));
+      }));
+  };
 
-  const commensInclude = (comments, searchString) => {
-    let testCase = false;
-    comments.forEach((comment)=>{
-      if (comment.username.toLowerCase().includes(searchString.toLowerCase()) || comment.text.toLowerCase().includes(searchString.toLowerCase())) {
-        testCase = true;
-      }});
+  const commentsInclude = (comments, searchString) => {
+      let testCase = false;
+      comments.forEach((comment)=>{
+        if (comment.username.toLowerCase().includes(searchString.toLowerCase()) || comment.text.toLowerCase().includes(searchString.toLowerCase())) {
+            testCase = true;
+        }});
       return testCase;
-  }
+  };
 
   return (
     <div className="App">
+      <SearchBar searchFunction={searchFilter} />
+      <PostsPage posts={postData} />
       {/* Add imported components here to render them */}
     </div>
   );
